@@ -1,0 +1,169 @@
+{
+    "nodes": [
+        {
+            "id": "성동훈(전문위원)",
+            "properties": {
+                "label": "성동훈(전문위원)",
+                "size": 33
+            }
+        },
+        {
+            "id": "곽문근(위원)",
+            "properties": {
+                "label": "곽문근(위원)",
+                "size": 39
+            }
+        },
+        {
+            "id": "심영미(위원)",
+            "properties": {
+                "label": "심영미(위원)",
+                "size": 33
+            }
+        },
+        {
+            "id": "차은숙(위원장)",
+            "properties": {
+                "label": "차은숙(위원장)",
+                "size": 42
+            }
+        },
+        {
+            "id": "조용석(위원)",
+            "properties": {
+                "label": "조용석(위원)",
+                "size": 33
+            }
+        },
+        {
+            "id": "김혁성(부위원장)",
+            "properties": {
+                "label": "김혁성(부위원장)",
+                "size": 33
+            }
+        }
+    ],
+    "edges": [
+        {
+            "id": "1",
+            "start": "성동훈(전문위원)",
+            "end": "곽문근(위원)",
+            "properties": {
+                "label": "",
+                "color": "#95a5a6",
+                "thickness": 1.0,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "2",
+            "start": "성동훈(전문위원)",
+            "end": "심영미(위원)",
+            "properties": {
+                "label": "",
+                "color": "#95a5a6",
+                "thickness": 1.0,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "3",
+            "start": "성동훈(전문위원)",
+            "end": "차은숙(위원장)",
+            "properties": {
+                "label": "",
+                "color": "#95a5a6",
+                "thickness": 1.0,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "4",
+            "start": "성동훈(전문위원)",
+            "end": "조용석(위원)",
+            "properties": {
+                "label": "",
+                "color": "#95a5a6",
+                "thickness": 1.0,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "5",
+            "start": "성동훈(전문위원)",
+            "end": "김혁성(부위원장)",
+            "properties": {
+                "label": "",
+                "color": "#95a5a6",
+                "thickness": 1.0,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "6",
+            "start": "곽문근(위원)",
+            "end": "성동훈(전문위원)",
+            "properties": {
+                "label": "3 utterances",
+                "color": "#95a5a6",
+                "thickness": 3.1972245773362196,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "7",
+            "start": "곽문근(위원)",
+            "end": "심영미(위원)",
+            "properties": {
+                "label": "3 utterances",
+                "color": "#95a5a6",
+                "thickness": 3.1972245773362196,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "8",
+            "start": "곽문근(위원)",
+            "end": "차은숙(위원장)",
+            "properties": {
+                "label": "3 utterances",
+                "color": "#95a5a6",
+                "thickness": 3.1972245773362196,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "9",
+            "start": "곽문근(위원)",
+            "end": "조용석(위원)",
+            "properties": {
+                "label": "3 utterances",
+                "color": "#95a5a6",
+                "thickness": 3.1972245773362196,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "10",
+            "start": "곽문근(위원)",
+            "end": "김혁성(부위원장)",
+            "properties": {
+                "label": "3 utterances",
+                "color": "#95a5a6",
+                "thickness": 3.1972245773362196,
+                "style": "solid"
+            }
+        },
+        {
+            "id": "11",
+            "start": "심영미(위원)",
+            "end": "성동훈(전문위원)",
+            "properties": {
+                "label": "",
+                "color": "#2ecc71",
+                "thickness": 1.0,
+                "style": "solid"
+            }
+        }
+    ]
+}
