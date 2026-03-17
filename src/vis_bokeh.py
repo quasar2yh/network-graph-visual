@@ -66,23 +66,24 @@ def render(data: dict) -> None:
     pos = layout_fn(G)
     graph_renderer = from_networkx(G, lambda g: pos)
 
-    # 노드 스타일
-    node_sizes = [G.nodes[n].get("size", 20) for n in G.nodes()]
-    graph_renderer.node_renderer.data_source.data["size"] = node_sizes
+    # 노드 스타일 (bokeh 3.x: Circle uses radius, not size)
+    node_radii = [G.nodes[n].get("size", 20) for n in G.nodes()]
+    graph_renderer.node_renderer.data_source.data["node_radius"] = node_radii
     graph_renderer.node_renderer.data_source.data["label"] = [
         G.nodes[n].get("label", n) for n in G.nodes()
     ]
     graph_renderer.node_renderer.glyph = Circle(
-        size="size",
+        radius="node_radius",
+        radius_units="screen",
         fill_color="#3498db",
         line_color="#1a252f",
         line_width=2,
     )
     graph_renderer.node_renderer.selection_glyph = Circle(
-        size="size", fill_color=Spectral4[2]
+        radius="node_radius", radius_units="screen", fill_color=Spectral4[2]
     )
     graph_renderer.node_renderer.hover_glyph = Circle(
-        size="size", fill_color=Spectral4[1]
+        radius="node_radius", radius_units="screen", fill_color=Spectral4[1]
     )
 
     # 엣지 스타일
@@ -102,7 +103,7 @@ def render(data: dict) -> None:
 
     plot.renderers.append(graph_renderer)
     plot.add_tools(
-        HoverTool(tooltips=[("노드", "@label"), ("크기", "@size")]),
+        HoverTool(tooltips=[("노드", "@label"), ("크기", "@node_radius")]),
         TapTool(),
     )
 
