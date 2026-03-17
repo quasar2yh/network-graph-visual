@@ -17,7 +17,6 @@ def render(data: dict) -> None:
             label=n.get("properties", {}).get("label", n["id"]),
             size=n.get("properties", {}).get("size", 20),
             color="#3498db",
-            font={"color": "#ffffff", "size": 14},
         )
         for n in nodes_raw
     ]
@@ -28,21 +27,16 @@ def render(data: dict) -> None:
             target=e["end"],
             label=e.get("properties", {}).get("label", ""),
             color=e.get("properties", {}).get("color", "#95a5a6"),
-            width=e.get("properties", {}).get("thickness", 1.0),
         )
         for e in edges_raw
     ]
 
     config = Config(
-        width="100%",
+        width=750,
         height=600,
         directed=True,
         physics=True,
         hierarchical=False,
-        nodeHighlightBehavior=True,
-        highlightColor="#f1c40f",
-        collapsible=False,
-        node={"labelProperty": "label"},
     )
 
     return_value = agraph(nodes=nodes, edges=edges, config=config)

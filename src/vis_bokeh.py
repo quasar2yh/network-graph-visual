@@ -63,7 +63,8 @@ def render(data: dict) -> None:
         border_fill_color="#1a1a2e",
     )
 
-    graph_renderer = from_networkx(G, layout_fn, scale=1, center=(0, 0))
+    pos = layout_fn(G)
+    graph_renderer = from_networkx(G, lambda g: pos)
 
     # 노드 스타일
     node_sizes = [G.nodes[n].get("size", 20) for n in G.nodes()]
