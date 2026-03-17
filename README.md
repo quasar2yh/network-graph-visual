@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 ### 기본 샘플 데이터로 실행
 ```bash
-uv run main.py sample.json
+uv run main.py
 ```
 
 ### 커스텀 JSON 파일로 실행
@@ -210,7 +210,7 @@ graph_visualize/
 
 ### 1. 기본 샘플 데이터로 실행
 ```bash
-uv run main.py sample.json
+uv run main.py
 ```
 기본 샘플 데이터가 모두 탭에서 시각화됩니다.
 

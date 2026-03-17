@@ -26,14 +26,8 @@ def resolve_file_path(filename: str) -> Path:
 
 
 def main():
-    if len(sys.argv) < 2:
-        print("사용법: uv run main.py <filename>")
-        print("\n예시:")
-        print("  uv run main.py sample.json")
-        print("  uv run main.py statics/inputs/sample.json")
-        sys.exit(1)
-
-    filename = sys.argv[1]
+    # Default to sample.json if no argument provided
+    filename = sys.argv[1] if len(sys.argv) > 1 else "sample.json"
 
     try:
         filepath = resolve_file_path(filename)
