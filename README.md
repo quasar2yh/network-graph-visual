@@ -34,8 +34,18 @@ pip install -r requirements.txt
 
 ## 🚀 실행
 
+### 기본 샘플 데이터로 실행
 ```bash
-uv run streamlit run app.py
+uv run main.py sample.json
+```
+
+### 커스텀 JSON 파일로 실행
+```bash
+# 파일명만 입력 (자동으로 statics/inputs에서 찾음)
+uv run main.py mydata.json
+
+# 또는 전체 경로 입력
+uv run main.py statics/inputs/mydata.json
 ```
 
 브라우저가 자동으로 열리며, `http://localhost:8501`에서 접속 가능합니다.
@@ -142,13 +152,22 @@ uv run streamlit run app.py
 
 ---
 
-## 📤 데이터 업로드
+## 📤 데이터 로드
+
+### CLI 지정 (권장)
+```bash
+# 방법 1: 파일명만 (statics/inputs에서 자동 검색)
+uv run main.py mydata.json
+
+# 방법 2: 전체 경로
+uv run main.py statics/inputs/mydata.json
+```
 
 ### 기본값
-기본적으로 `statics/inputs/sample.json` 파일을 로드합니다.
+CLI에서 파일을 지정하지 않으면 `statics/inputs/sample.json`을 로드합니다.
 
-### 커스텀 데이터
-앱의 **사이드바**에서 JSON 파일을 드래그&드롭으로 업로드:
+### 앱에서 업로드
+앱 실행 후 사이드바에서도 JSON 파일을 드래그&드롭으로 업로드 가능:
 1. 파일 업로드 위젯 사용
 2. 자동으로 노드/엣지 수 표시
 3. 원본 JSON은 사이드바 하단에서 확인 가능
@@ -159,6 +178,7 @@ uv run streamlit run app.py
 
 ```
 graph_visualize/
+├── main.py                    # CLI 엔트리포인트 (파일 경로 처리 및 streamlit 실행)
 ├── app.py                     # Streamlit 메인 앱 (5개 탭)
 ├── pyproject.toml             # 의존성 정의
 ├── README.md                  # 이 파일
@@ -179,6 +199,7 @@ graph_visualize/
 
 | 파일 | 역할 |
 |---|---|
+| `main.py` | CLI 인자 처리, 파일 경로 검증, Streamlit 실행 |
 | `app.py` | Streamlit UI, 탭 관리, 에러 처리 |
 | `data_loader.py` | JSON 로드, 노드/엣지 추출 |
 | `vis_*.py` | 각 라이브러리별 렌더링 로직 |
@@ -187,25 +208,36 @@ graph_visualize/
 
 ## 💡 사용 예시
 
-### 1. 기본 실행
+### 1. 기본 샘플 데이터로 실행
 ```bash
-uv run streamlit run app.py
+uv run main.py sample.json
 ```
 기본 샘플 데이터가 모두 탭에서 시각화됩니다.
 
-### 2. 커스텀 데이터 사용
-1. 자신의 JSON 파일 준비
-2. 사이드바 "📂 데이터" → "JSON 파일 업로드"
+### 2. 커스텀 JSON 파일로 실행 (CLI)
+```bash
+# statics/inputs 폴더의 파일명만 지정
+uv run main.py mydata.json
+
+# 또는 전체 경로
+uv run main.py statics/inputs/mydata.json
+```
+지정된 파일이 자동으로 로드되어 시각화됩니다.
+
+### 3. 앱 실행 후 파일 업로드
+앱 실행 후 사이드바에서도 파일을 업로드할 수 있습니다:
+1. **사이드바** → **📂 데이터** → **JSON 파일 업로드**
+2. 자신의 JSON 파일 드래그&드롭
 3. 선택한 탭에서 즉시 렌더링
 
-### 3. 레이아웃 비교
+### 4. 레이아웃 비교
 **Plotly** 또는 **Matplotlib** 탭에서 드롭다운으로 레이아웃 변경하며 비교:
 - Spring layout: 전체 구조 파악
 - Kamada-Kawai: 대칭적 배치
 - Circular: 간단한 배열
 - Shell: 그룹별 배치
 
-### 4. 인터랙티브 탐색
+### 5. 인터랙티브 탐색
 **PyVis** 또는 **Bokeh** 탭에서:
 - 노드를 드래그해서 구조 재정렬
 - 엣지 관계 직관적으로 파악

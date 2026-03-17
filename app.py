@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 
 import streamlit as st
@@ -23,8 +24,14 @@ with st.sidebar:
         data = json.loads(uploaded.read().decode("utf-8"))
         st.success(f"업로드 완료: {uploaded.name}")
     else:
-        data = load_graph_data()
-        st.info("기본 샘플 데이터 사용 중")
+        # Check if file is passed from command line
+        data_file = os.environ.get("GRAPH_VISUALIZE_DATA_FILE")
+        if data_file:
+            data = load_graph_data(data_file)
+            st.info(f"파일 로드: {Path(data_file).name}")
+        else:
+            data = load_graph_data()
+            st.info("기본 샘플 데이터 사용 중")
 
     nodes = data.get("nodes", [])
     edges = data.get("edges", [])
