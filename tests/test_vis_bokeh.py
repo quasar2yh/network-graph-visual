@@ -2,6 +2,7 @@
 TDD tests for vis_bokeh module.
 Tests run without Streamlit context by mocking st calls.
 """
+import sys
 import pytest
 import networkx as nx
 from unittest.mock import patch, MagicMock
@@ -92,15 +93,18 @@ class TestRenderFunction:
     @patch("src.vis_bokeh.st")
     def test_render_no_exception(self, mock_st):
         mock_st.selectbox.return_value = "spring"
-        mock_st.bokeh_chart = MagicMock()
-        from src.vis_bokeh import render
-        render(SAMPLE_DATA)
-        mock_st.bokeh_chart.assert_called_once()
+        mock_sb_func = MagicMock()
+        mock_sb_module = MagicMock(streamlit_bokeh=mock_sb_func)
+        with patch.dict(sys.modules, {"streamlit_bokeh": mock_sb_module}):
+            from src.vis_bokeh import render
+            render(SAMPLE_DATA)
+        mock_sb_func.assert_called_once()
 
     @patch("src.vis_bokeh.st")
     def test_render_all_layouts(self, mock_st):
-        mock_st.bokeh_chart = MagicMock()
-        from src.vis_bokeh import render, _LAYOUTS
-        for layout_name in _LAYOUTS:
-            mock_st.selectbox.return_value = layout_name
-            render(SAMPLE_DATA)
+        mock_sb_module = MagicMock()
+        with patch.dict(sys.modules, {"streamlit_bokeh": mock_sb_module}):
+            from src.vis_bokeh import render, _LAYOUTS
+            for layout_name in _LAYOUTS:
+                mock_st.selectbox.return_value = layout_name
+                render(SAMPLE_DATA)

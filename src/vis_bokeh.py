@@ -107,4 +107,5 @@ def render(data: dict) -> None:
         TapTool(),
     )
 
-    st.bokeh_chart(plot, use_container_width=True)
+    from streamlit_bokeh import streamlit_bokeh
+    streamlit_bokeh(plot, use_container_width=True)

@@ -3,12 +3,22 @@ NetworkX + Matplotlib 기반 네트워크 시각화
 - 정적 렌더링, 다양한 레이아웃/스타일 지원
 - st.pyplot()으로 렌더링
 """
+import pathlib
+
 import matplotlib
+import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 import networkx as nx
 import streamlit as st
 
-matplotlib.rcParams["font.family"] = ["Malgun Gothic", "AppleGothic", "DejaVu Sans"]
+_FONT_PATH = pathlib.Path(__file__).parent.parent / "statics" / "fonts" / "NotoSansKR.ttf"
+if _FONT_PATH.exists():
+    fm.fontManager.addfont(str(_FONT_PATH))
+    fm._load_fontmanager(try_read_cache=False)
+    _prop = fm.FontProperties(fname=str(_FONT_PATH))
+    matplotlib.rcParams["font.family"] = _prop.get_name()
+else:
+    matplotlib.rcParams["font.family"] = ["Malgun Gothic", "AppleGothic", "DejaVu Sans"]
 matplotlib.rcParams["axes.unicode_minus"] = False
 
 

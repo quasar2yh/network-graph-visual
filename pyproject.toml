@@ -13,6 +13,7 @@ dependencies = [
     "matplotlib>=3.9.0",
     "bokeh>=3.6.0",
     "scipy>=1.17.1",
+    "streamlit-bokeh>=3.8.3",
 ]
 
 [dependency-groups]
